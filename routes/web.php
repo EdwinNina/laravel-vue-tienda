@@ -27,10 +27,14 @@ Route::put('/categoria/activar','CategoryController@activar');
 Route::put('/categoria/desactivar','CategoryController@desactivar');
 Route::get('/categorias','CategoryController@seleccionarCategoria');
 
-//rutas de la categoria
+//rutas de productos
 Route::get('/producto','ProductController@index');
 Route::post('/producto/agregar','ProductController@store');
 Route::put('/producto/actualizar','ProductController@update');
 Route::put('/producto/activar','ProductController@activar');
 Route::put('/producto/desactivar','ProductController@desactivar');
 
+//rutas de los clientes
+Route::get('/clientes','ClientController@index');
+Route::post('/clientes/agregar','ClientController@store');
+Route::put('/clientes/actualizar','ClientController@update');
