@@ -38,3 +38,8 @@ Route::put('/producto/desactivar','ProductController@desactivar');
 Route::get('/clientes','ClientController@index');
 Route::post('/clientes/agregar','ClientController@store');
 Route::put('/clientes/actualizar','ClientController@update');
+
+//rutas de los proveedores
+Route::get('/proveedores','ProviderController@index');
+Route::post('/proveedores/agregar','ProviderController@store');
+Route::put('/proveedores/actualizar','ProviderController@update');
