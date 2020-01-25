@@ -8,7 +8,7 @@
             <li class="breadcrumb-item active" aria-current="page">Proveedores</li>
             </ol>
         </div>
-        <div class="container-fluid">
+        <div>
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
                 <div class="card-header">

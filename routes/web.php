@@ -43,3 +43,14 @@ Route::put('/clientes/actualizar','ClientController@update');
 Route::get('/proveedores','ProviderController@index');
 Route::post('/proveedores/agregar','ProviderController@store');
 Route::put('/proveedores/actualizar','ProviderController@update');
+
+//rutas de roles
+Route::get('/roles','RoleController@index');
+Route::get('/obtenerRoles','RoleController@obtenerRoles');
+
+//rutas de usuarios
+Route::get('/usuario','UserController@index');
+Route::post('/usuario/agregar','UserController@store');
+Route::put('/usuario/actualizar','UserController@update');
+Route::put('/usuario/activar','UserController@activar');
+Route::put('/usuario/desactivar','UserController@desactivar');

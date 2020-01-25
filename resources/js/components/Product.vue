@@ -6,7 +6,7 @@
             <li class="breadcrumb-item"><a href="#">Admin</a></li>
             <li class="breadcrumb-item active">Productos</li>
         </ol>
-        <div class="container">
+        <div>
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
                 <div class="card-header">

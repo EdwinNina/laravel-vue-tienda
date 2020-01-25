@@ -22,10 +22,10 @@
         <client-component />
     </template>
     <template v-if="menu == 7">
-        <h1>Contenido menu 7</h1>
+        <user-component />
     </template>
     <template v-if="menu == 8">
-        <h1>Contenido menu 8</h1>
+        <role-component />
     </template>
     <template v-if="menu == 9">
         <h1>Contenido menu 9</h1>
