@@ -62,7 +62,7 @@
                                     <td>{{ persona.direccion }}</td>
                                     <td>{{ persona.telefono }}</td>
                                     <td>{{ persona.email }}</td>
-                                    <td>{{ persona.proveedor.contacto }}</td>
+                                    <td>{{ persona.contacto }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -260,7 +260,6 @@
                 this.cerrarModal();                    
             },
             async actualizarProveedor(){
-                if(this.validarProveedor()) return;
                 const response = await axios.put('proveedores/actualizar', this.proveedor);
                 this.listarProveedor(1,'','nombre');
                 this.cerrarModal();
@@ -294,8 +293,8 @@
                                 this.proveedor.direccion = data['direccion'];
                                 this.proveedor.telefono = data['telefono'];
                                 this.proveedor.email = data['email'];
-                                this.proveedor.contacto = data['proveedor']['contacto'];
-                                this.proveedor.telefono_contacto = data['proveedor']['telefono_contacto'];
+                                this.proveedor.contacto = data['contacto'];
+                                this.proveedor.telefono_contacto = data['telefono_contacto'];
                                 this.proveedor.id = data['id'];
                                 break;
                             }

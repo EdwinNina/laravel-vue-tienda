@@ -12,7 +12,7 @@ class Provider extends Model
 
     public function persona()
     {
-        return $this->belongsTo('App\Person','person_id');
+        return $this->belongsTo('App\Person');
 
     }
 }

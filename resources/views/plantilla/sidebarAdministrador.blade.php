@@ -43,7 +43,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="true" aria-controls="collapsePage">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="true" aria-controls="collapseVentas">
             <i class="icon-basket"></i>
             <span>Ventas</span>
         </a>
@@ -56,7 +56,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAcceso" aria-expanded="true"
-        aria-controls="collapsePage">
+        aria-controls="collapseAcceso">
         <i class="icon-people"></i>
         <span>Acceso</span>
         </a>
@@ -69,7 +69,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes" aria-expanded="true"
-        aria-controls="collapsePage">
+        aria-controls="collapseReportes">
         <i class="icon-pie-chart"></i>
         <span>Reportes</span>
         </a>

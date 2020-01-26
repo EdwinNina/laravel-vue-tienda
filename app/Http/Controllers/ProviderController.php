@@ -18,9 +18,15 @@ class ProviderController extends Controller
         $criterio = $request->criterio;
 
         if($buscar == ''){
-            $proveedores = Person::with('proveedor')->orderBy('id','desc')->paginate(5);
+            $proveedores = Provider::join('people','people.id','=','providers.person_id')
+                ->select('people.id','people.nombre','people.tipo_documento','people.num_documento','people.direccion','people.telefono','people.email',
+                        'providers.contacto','providers.telefono_contacto')
+                ->orderBy('people.id','desc')->paginate(5);
         }else{
-            $proveedores = Person::with('proveedor')->where($criterio, 'like', '%' . $buscar . '%')->orderBy('id','desc')->paginate(5);
+            $proveedores = Provider::join('people','people.id','=','providers.person_id')
+                ->select('people.id','people.nombre','people.tipo_documento','people.num_documento','people.direccion','people.telefono','people.email',
+                    'providers.contacto','providers.telefono_contacto')
+                ->where($criterio, 'like', '%' . $buscar . '%')->orderBy('id','desc')->paginate(5);
         }
         return [
             'pagination' => [

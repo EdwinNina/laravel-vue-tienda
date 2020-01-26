@@ -3664,23 +3664,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (!this.validarProveedor()) {
-                  _context3.next = 2;
-                  break;
-                }
-
-                return _context3.abrupt("return");
-
-              case 2:
-                _context3.next = 4;
+                _context3.next = 2;
                 return axios.put('proveedores/actualizar', this.proveedor);
 
-              case 4:
+              case 2:
                 response = _context3.sent;
                 this.listarProveedor(1, '', 'nombre');
                 this.cerrarModal();
 
-              case 7:
+              case 5:
               case "end":
                 return _context3.stop();
             }
@@ -3730,8 +3722,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   this.proveedor.direccion = data['direccion'];
                   this.proveedor.telefono = data['telefono'];
                   this.proveedor.email = data['email'];
-                  this.proveedor.contacto = data['proveedor']['contacto'];
-                  this.proveedor.telefono_contacto = data['proveedor']['telefono_contacto'];
+                  this.proveedor.contacto = data['contacto'];
+                  this.proveedor.telefono_contacto = data['telefono_contacto'];
                   this.proveedor.id = data['id'];
                   break;
                 }
@@ -47630,7 +47622,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(persona.email))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(persona.proveedor.contacto))])
+                    _c("td", [_vm._v(_vm._s(persona.contacto))])
                   ])
                 }),
                 0

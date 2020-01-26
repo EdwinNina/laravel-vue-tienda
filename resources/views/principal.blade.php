@@ -16,7 +16,16 @@
     <div id="app">
       <div id="wrapper">
       <!-- Sidebar -->
-        @include('plantilla.sidebar')
+        @if (Auth::check())
+          @if (Auth::user()->role_id == 1)
+              @include('plantilla.sidebarAdministrador')
+            @elseif(Auth::user()->role_id == 2)
+              @include('plantilla.sidebarVendedor')
+            @elseif(Auth::user()->role_id == 3)
+              @include('plantilla.sidebarAlmacenero')
+            @else
+          @endif
+        @endif
       <!-- Sidebar -->
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
@@ -80,17 +89,12 @@
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
                       <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
-                      <span class="ml-2 d-none d-lg-inline text-white small">EdwinSys</span>
+                      <span class="ml-2 d-none d-lg-inline text-white small">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                      <a class="dropdown-item" href="#">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
-                      </a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="login.html">
+                      <a class="dropdown-item" href="{{ route('logout') }}">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
+                        Cerrar sesion
                       </a>
                     </div>
                   </li>
@@ -129,7 +133,6 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
-    <script src="js/app.js"></script>
     <script src="js/plantilla.js"></script>
 </body>
 </html>
