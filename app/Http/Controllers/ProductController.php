@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         if(!$request->ajax()) return redirect('/');
@@ -36,25 +31,27 @@ class ProductController extends Controller
         ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function listarProductos(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
+
+        if($buscar == ''){
+            $productos = Product::with('category')->orderBy('id','desc')->paginate(5);
+        }else{
+            $productos = Product::with('category')->where($criterio, 'like', '%' . $buscar . '%')->orderBy('id','desc')->paginate(5);
+        }
+        return $productos;
+    }
+
     public function store(Request $request)
     {
         if(!$request->ajax()) return redirect('/');
         Product::create($request->all());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         if(!$request->ajax()) return redirect('/');
@@ -79,5 +76,20 @@ class ProductController extends Controller
     {
         if(!$request->ajax()) return redirect('/');
         Product::find($request->id)->update(['condicion' => '0']);
+    }
+
+    public function buscarProducto(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+
+        $filtro = $request->filtro;
+
+        $producto = Product::where('codigo', '=', $filtro)
+                    ->select('id','nombre')
+                    ->orderBy('nombre', 'asc')
+                    ->take(1)
+                    ->get();
+        
+        return $producto;
     }
 }

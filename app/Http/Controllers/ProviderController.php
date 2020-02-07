@@ -100,4 +100,18 @@ class ProviderController extends Controller
         }
 
     }
+
+    public function seleccionarProveedores(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+
+        $filtro = $request->filtro;
+
+        $proveedores = Provider::join('people','people.id','=','providers.person_id')
+                            ->where('people.nombre','like','%' . $filtro . '%')
+                            ->orWhere('people.num_documento','like','%' . $filtro . '%')
+                            ->select('people.id','people.nombre','people.num_documento')
+                            ->orderBy('people.nombre','asc')->get();
+        return $proveedores;
+    }
 }

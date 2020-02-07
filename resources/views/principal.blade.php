@@ -133,6 +133,7 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
+    <script src="js/app.js"></script>
     <script src="js/plantilla.js"></script>
 </body>
 </html>

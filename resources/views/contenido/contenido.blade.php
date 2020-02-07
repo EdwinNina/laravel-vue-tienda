@@ -10,7 +10,7 @@
         <product-component />
     </template>
     <template v-if="menu == 3">
-        <h1>Ingresos</h1>
+        <ingreso-component />
     </template>
     <template v-if="menu == 4">
         <provider-component />

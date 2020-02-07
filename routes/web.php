@@ -3,7 +3,7 @@
 Route::group(['middleware' => ['guest']], function () {
     //rutas login
     Route::get('/','Auth\LoginController@showLoginForm');
-    Route::post('/login','Auth\LoginController@login')->name('login');    
+    Route::post('/login','Auth\LoginController@login')->name('login');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -30,11 +30,21 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/producto/actualizar','ProductController@update');
         Route::put('/producto/activar','ProductController@activar');
         Route::put('/producto/desactivar','ProductController@desactivar');
+        Route::get('/producto/buscarProducto','ProductController@buscarProducto');
+        Route::get('/producto/listarProductos','ProductController@listarProductos');
         
         //rutas de los proveedores
         Route::get('/proveedores','ProviderController@index');
+        Route::get('/proveedores/seleccionarProveedores','ProviderController@seleccionarProveedores');
         Route::post('/proveedores/agregar','ProviderController@store');
         Route::put('/proveedores/actualizar','ProviderController@update');
+
+        //rutas de la ingresos
+        Route::get('/ingresos','IngresoController@index');
+        Route::post('/ingreso/agregar','IngresoController@store');
+        Route::put('/ingreso/desactivar','IngresoController@desactivar');
+        Route::get('/ingreso/obtenerIngreso','IngresoController@obtenerIngreso');
+        Route::get('/ingreso/obtenerDetalleIngreso','IngresoController@obtenerDetalleIngreso');
     });
 
     Route::group(['middleware' => ['Vendedor']], function () {
