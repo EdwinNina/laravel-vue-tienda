@@ -43,4 +43,18 @@ class ClientController extends Controller
         if(!$request->ajax()) return redirect('/');
         Person::findOrFail($request->id)->update($request->all());
     }
+
+    public function seleccionarCliente(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+
+        $filtro = $request->filtro;
+
+        $clientes = Person::where('nombre','like','%' . $filtro . '%')
+                        ->orWhere('num_documento','like','%' . $filtro . '%')
+                        ->select('id','nombre','num_documento')
+                        ->orderBy('nombre','asc')->get();
+        return $clientes;
+    }
+
 }

@@ -9,6 +9,7 @@ Vue.component('provider-component', require('./components/Provider.vue').default
 Vue.component('role-component', require('./components/Role.vue').default);
 Vue.component('user-component', require('./components/User.vue').default);
 Vue.component('ingreso-component', require('./components/Ingreso.vue').default);
+Vue.component('venta-component', require('./components/Venta.vue').default);
 
 const app = new Vue({
     el: '#app',

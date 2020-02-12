@@ -16,7 +16,7 @@
         <provider-component />
     </template>
     <template v-if="menu == 5">
-        <h1>Ventas</h1>
+        <venta-component />
     </template>
     <template v-if="menu == 6">
         <client-component />
