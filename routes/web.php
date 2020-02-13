@@ -14,6 +14,8 @@ Route::group(['middleware' => ['auth']], function () {
         return view('contenido.contenido');
     })->name('main');
 
+    Route::get('/dashboard','DashboardController');
+    
     Route::group(['middleware' => ['Almacenero']], function () {
 
         //rutas de la categoria
