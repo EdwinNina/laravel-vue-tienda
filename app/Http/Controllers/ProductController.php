@@ -61,6 +61,17 @@ class ProductController extends Controller
         return $productos;
     }
 
+    public function listarPDF()
+    {
+        $productos = Product::with('category')->orderBy('nombre','desc')->get();
+        
+        $cont = Product::count();
+
+        $pdf = \PDF::loadView('pdf.productospdf',['productos' => $productos, 'cont' => $cont]);
+
+        return $pdf->download('productos.pdf');
+    }
+
     public function store(Request $request)
     {
         if(!$request->ajax()) return redirect('/');

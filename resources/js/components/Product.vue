@@ -14,6 +14,9 @@
                     <button type="button" class="btn btn-secondary" @click="abrirModal('producto','registar')">
                         <i class="icon-plus"></i>&nbsp;Nuevo
                     </button>
+                    <button type="button" class="btn btn-info" @click="cargarPDF()">
+                        <i class="icon-doc"></i>&nbsp;Reporte
+                    </button>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
@@ -366,6 +369,9 @@
                 this.producto.descripcion = '';
                 this.producto.stock = 0;
                 this.producto.precio_venta = 0.0;
+            },
+            cargarPDF(){
+                window.open('producto/listarPDF','_blank');
             }
         },
     }

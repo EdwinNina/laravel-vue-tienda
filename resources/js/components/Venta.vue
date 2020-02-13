@@ -70,6 +70,9 @@
                                                     <i class="icon-trash"></i>
                                                 </button>
                                             </template>
+                                            <button type="button" class="btn btn-info btn-sm" @click="verPdf(venta.id)">
+                                            <i class="icon-doc"></i>
+                                            </button>
                                         </td>
                                         <td>{{ venta.name }}</td>
                                         <td>{{ venta.nombre }}</td>
@@ -711,6 +714,9 @@
             },
             cerrarVerVenta(){
                 this.listado = 1;
+            },
+            async verPdf(id){
+                window.open(`venta/pdf/${id}`);               
             }
         },
     }

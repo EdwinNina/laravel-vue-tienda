@@ -124,4 +124,28 @@ class VentaController extends Controller
         return $detalles;
     }
 
+    public function pdf(Request $request, $id)
+    {
+        $venta = Venta::join('people','people.id','=','ventas.cliente_id')
+        ->join('users','users.id','=','ventas.user_id')
+        ->select('ventas.id','ventas.tipo_comprobante','ventas.serie_comprobante','ventas.num_comprobante',
+                'ventas.fecha_hora','ventas.impuesto','ventas.total','ventas.estado',
+                'people.nombre','people.tipo_documento','people.num_documento','people.direccion','people.email',
+                'people.telefono','users.name as usuario')
+        ->where('ventas.id','=',$id)
+        ->take(1)
+        ->get();
+        
+        $detalles = DetalleVenta::join('products','products.id','=','detalle_ventas.product_id')
+                ->select('detalle_ventas.precio','detalle_ventas.cantidad','detalle_ventas.descuento','products.nombre as producto')
+                ->where('detalle_ventas.venta_id', '=', $id)
+                ->orderBy('detalle_ventas.venta_id', 'desc')
+                ->get();
+
+        $numVenta = Venta::select('num_comprobante')->where('id',$id)->get();
+
+        $pdf = \PDF::loadView('pdf.venta',['venta' => $venta, 'detalles' => $detalles]);
+        
+        return $pdf->download('venta-'.$numVenta[0]->num_comprobante.'.pdf');
+    }
 }

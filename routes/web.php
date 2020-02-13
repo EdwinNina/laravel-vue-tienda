@@ -49,17 +49,18 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['Vendedor']], function () {
 
-        //rutas de los clientes
-        Route::get('/clientes','ClientController@index');
-        Route::post('/clientes/agregar','ClientController@store');
-        Route::put('/clientes/actualizar','ClientController@update');        
-
         //rutas de ventas
         Route::get('/ventas','VentaController@index');
         Route::post('/venta/agregar','VentaController@store');
         Route::put('/venta/desactivar','VentaController@desactivar');
-        Route::get('/venta/obtenerIngreso','VentaController@obtenerIngreso');
-        Route::get('/venta/obtenerDetalleIngreso','VentaController@obtenerDetalleIngreso');
+        Route::get('/venta/obtenerVenta','VentaController@obtenerVenta');
+        Route::get('/venta/obtenerDetalleVenta','VentaController@obtenerDetalleVenta');
+        
+        //rutas de los clientes
+        Route::get('/clientes','ClientController@index');
+        Route::post('/clientes/agregar','ClientController@store');
+        Route::put('/clientes/actualizar','ClientController@update');
+        Route::get('/clientes/seleccionarCliente','ClientController@seleccionarCliente');
 
     });
 
@@ -83,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/producto/listarProductos','ProductController@listarProductos');
         Route::get('/producto/buscarProductoVenta','ProductController@buscarProductoVenta');
         Route::get('/producto/listarProductosVenta','ProductController@listarProductosVenta');
+        Route::get('/producto/listarPDF','ProductController@listarPDF')->name('productos_pdf');
         
         //rutas de los proveedores
         Route::get('/proveedores','ProviderController@index');
@@ -114,6 +116,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/venta/desactivar','VentaController@desactivar');
         Route::get('/venta/obtenerVenta','VentaController@obtenerVenta');
         Route::get('/venta/obtenerDetalleVenta','VentaController@obtenerDetalleVenta');
+        Route::get('/venta/pdf/{id}','VentaController@pdf')->name('venta_pdf');
         
         //rutas de los clientes
         Route::get('/clientes','ClientController@index');
