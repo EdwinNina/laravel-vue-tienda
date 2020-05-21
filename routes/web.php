@@ -15,6 +15,7 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('main');
 
     Route::get('/dashboard','DashboardController');
+    Route::post('/notification/get','NotificationController@get');
     
     Route::group(['middleware' => ['Almacenero']], function () {
 

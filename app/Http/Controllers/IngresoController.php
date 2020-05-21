@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Ingreso;
 use Carbon\Carbon;
 use App\DetalleIngreso;
 use Illuminate\Http\Request;
+use App\Notifications\NotifyAdmin;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,6 +78,27 @@ class IngresoController extends Controller
                     'cantidad' => $det['cantidad'],
                     'precio' => $det['precio'],
                 ]);                
+            }
+
+            $fechaActual = date('Y-m-d');
+            $numVentas = DB::table('ventas')->whereDate('created_at', $fechaActual)->count();
+            $numIngresos = DB::table('ingresos')->whereDate('created_at', $fechaActual)->count();
+            
+            $arregloDatos = [
+                'ventas' => [
+                    'numero' => $numVentas,
+                    'msj' => 'Ventas'
+                ],
+                'ingresos' => [
+                    'numero' => $numIngresos,
+                    'msj' => 'Ingresos'
+                ]
+            ];
+
+            $allUsers = User::all();
+
+            foreach ($allUsers as $notificar) {
+                User::find($notificar->id)->notify(new NotifyAdmin($arregloDatos));
             }
 
             DB::commit();

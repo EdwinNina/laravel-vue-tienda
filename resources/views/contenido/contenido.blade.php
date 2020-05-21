@@ -28,10 +28,10 @@
         <role-component />
     </template>
     <template v-if="menu == 9">
-        <h1>Reporte Ingresos</h1>
+        <consulta-ingreso-component />
     </template>
     <template v-if="menu == 10">
-        <h1>Reportes Egresos</h1>
+        <consulta-venta-component />
     </template>
     <template v-if="menu == 11">
         <h1>Ayuda</h1>

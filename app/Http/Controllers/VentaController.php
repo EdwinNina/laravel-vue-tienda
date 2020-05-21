@@ -6,8 +6,10 @@ use App\Venta;
 use Carbon\Carbon;
 use App\DetalleVenta;
 use Illuminate\Http\Request;
+use App\Notifications\NotifyAdmin;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class VentaController extends Controller
 {
@@ -77,6 +79,27 @@ class VentaController extends Controller
                     'precio' => $det['precio'],
                     'descuento' => $det['descuento'],
                 ]);                
+            }
+
+            $fechaActual = date('Y-m-d');
+            $numVentas = DB::table('ventas')->whereDate('created_at', $fechaActual)->count();
+            $numIngresos = DB::table('ingresos')->whereDate('created_at', $fechaActual)->count();
+            
+            $arregloDatos = [
+                'ventas' => [
+                    'numero' => $numVentas,
+                    'msj' => 'Ventas'
+                ],
+                'ingresos' => [
+                    'numero' => $numIngresos,
+                    'msj' => 'Ingresos'
+                ]
+            ];
+
+            $allUsers = User::all();
+
+            foreach ($allUsers as $notificar) {
+                User::find($notificar->id)->notify(new NotifyAdmin($arregloDatos));
             }
 
             DB::commit();
